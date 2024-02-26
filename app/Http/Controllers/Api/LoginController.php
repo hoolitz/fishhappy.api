@@ -4,17 +4,32 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class LoginController extends Controller
 {
-    public function __invoke(Request $request)
+    public function login(Request $request)
     {
-        $credentials = $request->validate([
-            "email" => ["required"],
-            "password" => ["required"],
+
+        // INPUT VALIDATIONS (EMAIL AND PASSWORD)
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
-        if (auth()->guard('customer')->attempt($credentials)) {
+
+        if ($validator->fails()){
+            return response()->json([
+                'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
+                'message' => $validator->messages(),
+            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
+                Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
+        }
+
+
+        if (auth()->guard('customer')->attempt($validator->validated())) {
             $customer = auth()->guard('customer')->user();
 
             $token = $customer->createToken('fish-happy-token')->accessToken;
