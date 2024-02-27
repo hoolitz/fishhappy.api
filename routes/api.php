@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\CustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -9,8 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'cstmr'], function () {
     Route::post('/register', [RegisterController::class, 'register']);
     Route::post('/login', [LoginController::class, 'login']);
+    Route::get('/',[CustomerController::class,'__invoke']);
 
-    Route::get("/", "Api\CustomerController");
     Route::post("/change_password", "Api\ChangePasswordController");
     Route::post("/password/reset", "Api\ResetPasswordController");
     Route::post("/password/email", "Api\ForgotPasswordController");

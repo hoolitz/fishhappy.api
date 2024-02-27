@@ -12,11 +12,16 @@ class CustomerController extends Controller
         $this->middleware('auth:api');
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
     {
-        return response($request->user()->load([
-            'orders.products',
-            'favorites'
-        ]), 200);
+//        return response($request->user()->load([
+//            'orders.products',
+//            'favorites'
+//        ]), 200);
+
+        return response()->json(
+            $request->user()->load([
+                'orders.products', 'favorites'
+            ]), 200);
     }
 }
