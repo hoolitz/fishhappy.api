@@ -50,7 +50,7 @@ class RegisterController extends Controller
         // RESPONSE FOR UNHANDLED SITUATIONS
         return \response()->json([
             'message'=> "Something went wrong please try again later.",
-            'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
+            'status' => ResponseAlias::HTTP_INTERNAL_SERVER_ERROR,
         ], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR);
 
 

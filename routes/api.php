@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\OrdersController;
+use App\Http\Controllers\Api\ProductFavouriteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,8 @@ Route::group(['prefix' => 'cstmr'], function () {
     Route::get("/orders", [OrdersController::class,"index"]);
     Route::post("/orders", [OrdersController::class,"store"]);
     Route::get("/orders/{order}", [OrdersController::class,"show"]);
-
+    Route::post("/products/{product}/favourites", [ProductFavouriteController::class,'store']);
+    Route::delete("/products/{product}/favourites", [ProductFavouriteController::class,'destroy']);
 
 
     Route::post("/change_password", "Api\ChangePasswordController");
@@ -35,8 +37,6 @@ Route::group(['prefix' => 'cstmr'], function () {
 //    Route::post("/orders", "Api\OrdersController@store");
     Route::post("/orders/{order}/cancel", "Api\OrderCancelController");
     Route::post("/orders/{order}/confirm", "Api\OrderConfirmController");
-    Route::post("/products/{product}/favourites", "Api\ProductFavouriteController@store");
-    Route::delete("/products/{product}/favourites", "Api\ProductFavouriteController@destroy");
     Route::get("/orders/{order}/payments", "Api\PaymentsController");
 });
 

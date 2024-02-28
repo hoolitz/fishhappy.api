@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="34059983-cbba-462b-8af0-a466232c3e34" name="hooli" url="http://hooli@bongomusicawards.co.tz">
+        <fileTransfer rootFolder="/fishhappy.api" host="hooli@bongomusicawards.co.tz" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
