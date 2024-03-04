@@ -19,8 +19,12 @@ Route::group(['prefix' => 'cstmr'], function () {
     Route::get("/products", [ProductsController::class,"index"]);
     Route::get("/products/{product}", [ProductsController::class,"show"]);
     Route::get("/orders", [OrdersController::class,"index"]);
+
     Route::post("/orders", [OrdersController::class,"store"]);
+
+
     Route::get("/orders/{order}", [OrdersController::class,"show"]);
+    //End-points to test.
     Route::post("/products/{product}/favourites", [ProductFavouriteController::class,'store']);
     Route::delete("/products/{product}/favourites", [ProductFavouriteController::class,'destroy']);
 
