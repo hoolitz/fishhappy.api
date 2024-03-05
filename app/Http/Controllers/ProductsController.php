@@ -54,7 +54,7 @@ class ProductsController extends Controller
                 $fileData = $this->uploads($file,$path);
 
                 $data = [
-                    'imageUrl' => $fileData['filePath'],
+                    'imageUrl' => 'storage/'.$fileData['filePath'],
                     'imageSize' =>  $fileData['fileSize'],
                     'imageType' => $fileData['fileType'],
                     'name' => $validator->validated()['name'],
