@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
@@ -23,5 +24,13 @@ class OrdersController extends Controller
         return view('orders.show', [
             "order" => $order
         ]);
+    }
+
+
+    public function updateStatus(Request $request){
+        $order = Order::find((int)$request->order);
+        $order->status = $request->status;
+        $order->save();
+        return redirect()->route('orders.index');
     }
 }

@@ -19,8 +19,8 @@ Route::group(['prefix' => 'cstmr'], function () {
     Route::get("/products", [ProductsController::class,"index"]);
     Route::get("/products/{product}", [ProductsController::class,"show"]);
     Route::get("/orders", [OrdersController::class,"index"]);
-
     Route::post("/orders", [OrdersController::class,"store"]);
+    //Route::post("/orders/update-status", [OrdersController::class,"updateStatus"])->name('order.update.status');
 
 
     Route::get("/orders/{order}", [OrdersController::class,"show"]);
