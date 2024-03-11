@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -23,5 +24,14 @@ class CustomerController extends Controller
             $request->user()->load([
                 'orders.products', 'favorites'
             ]), 200);
+    }
+
+    public function updateFCMToken(Request $request) {
+        $customer = Customer::find(auth()->id());
+        $customer->device_id = $request->fcm_token;
+        $customer->save();
+        return response()->json([
+            'fcm_token' => $customer->fcm_token,
+        ], 200);
     }
 }

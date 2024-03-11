@@ -15,12 +15,13 @@ Route::group(['prefix' => 'cstmr'], function () {
     Route::post('/register', [RegisterController::class, 'register']);
     Route::post('/login', [LoginController::class, 'login']);
     Route::get('/',[CustomerController::class,'__invoke']);
+    Route::get('/fcm_token',[CustomerController::class,'updateFCMToken']);
     Route::get("/categories", [CategoriesController::class, '__invoke']);
     Route::get("/products", [ProductsController::class,"index"]);
     Route::get("/products/{product}", [ProductsController::class,"show"]);
     Route::get("/orders", [OrdersController::class,"index"]);
     Route::post("/orders", [OrdersController::class,"store"]);
-    //Route::post("/orders/update-status", [OrdersController::class,"updateStatus"])->name('order.update.status');
+
 
 
     Route::get("/orders/{order}", [OrdersController::class,"show"]);
