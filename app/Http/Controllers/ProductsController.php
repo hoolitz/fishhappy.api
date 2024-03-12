@@ -71,9 +71,9 @@ class ProductsController extends Controller
                 DB::commit();
 
                 $payload = [];
-                $payload['title'] = 'New Available';
-                $payload['message'] = 'New Product Available, Place your order';
-                $payload['body'] = 'Passing any data here';
+                $payload['title'] = 'New Fishes Available';
+                $payload['message'] = 'You can drop any message heregit';
+                $payload['body'] = 'New Fishes Available, Place your order no';
 
                 //SEND GOOGLE CLOUD MESSAGE
                 $this->pushNotification([env('DEVICE_TOKEN','none')],$payload);
