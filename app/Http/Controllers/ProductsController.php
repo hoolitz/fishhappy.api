@@ -70,8 +70,13 @@ class ProductsController extends Controller
                 $product = Product::create($data);
                 DB::commit();
 
+                $payload = [];
+                $payload['title'] = 'New Available';
+                $payload['message'] = 'New Product Available, Place your order';
+                $payload['body'] = 'Passing any data here';
+
                 //SEND GOOGLE CLOUD MESSAGE
-                $this->pushNotification();
+                $this->pushNotification([env('DEVICE_TOKEN','none')],$payload);
 
                 $request->session()->flash('product.name', $product->name);
                 return redirect()->route('products.index');

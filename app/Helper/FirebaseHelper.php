@@ -4,38 +4,33 @@ namespace App\Helper;
 trait FirebaseHelper {
 
     //protected function pushNotification($tokens, $payload)
-    protected function pushNotification()
+    protected function pushNotification($tokens, $payload)
     {
 
-        $data=[];
-        $data['message']= "Some message";
-        $data['booking_id']="my booking booking_id";
+        //$data=[];
+        //$data['message']= "Some message";
+        //$data['booking_id']="my booking booking_id";
 
-        $tokens = [];
-        $tokens[] = 'ekgg0nU9QX2P6w5uJYkqOv:APA91bGeIKDw1zrERzl62bWJsDSdJkZsM5xHLJMlyDWMuoxW4ysuodFnRv_VJZu2FGBtksi_EE-TilFL1htKpWGs3TMme1Pc9jIeXeT3MscX1rTax68ywj_VrrrC9etaf0xkCRuUJTev';
-        $response = $this->sendFirebasePush($tokens,$data);
+        //$tokens = [];
+        //$tokens[] = 'ekgg0nU9QX2P6w5uJYkqOv:APA91bGeIKDw1zrERzl62bWJsDSdJkZsM5xHLJMlyDWMuoxW4ysuodFnRv_VJZu2FGBtksi_EE-TilFL1htKpWGs3TMme1Pc9jIeXeT3MscX1rTax68ywj_VrrrC9etaf0xkCRuUJTev';
+        $response = $this->sendFirebasePush($tokens,$payload);
 
         //RETURN THE RESPONSE
-        // return $response;
-
-
+        return $response;
     }
 
     public function sendFirebasePush($tokens, $data)
     {
 
-        $serverKey = 'AAAACXRa9pQ:APA91bE9v201ba4-IJWObhorUBeVi3rlPATdv_m1TF_76vROiBbULDsP9kwpMFgJSfeCimk3yz41r8U_XEJRRGVzsA4e5JacWEKdaSTQy2Xf-8lyXxrx4A-OwvqA7fRw8BhF8oQTAiVq';
-
         // prep the bundle
         $msg = array
         (
             'message'   => $data['message'],
-            'booking_id' => $data['booking_id'],
         );
 
         $notifyData = [
-            "title"=> "Port App",
-            "body" => $data['message']
+            "title"=> $data['title'],
+            "body" => $data['body']
         ];
 
         $registrationIds = $tokens;
@@ -61,7 +56,7 @@ trait FirebaseHelper {
         }
 
         $headers[] = 'Content-Type: application/json';
-        $headers[] = 'Authorization: key='. $serverKey;
+        $headers[] = 'Authorization: key='.env('SERVER_KEY','none');
 
         $ch = curl_init();
         curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
