@@ -72,8 +72,8 @@ class ProductsController extends Controller
 
                 $payload = [];
                 $payload['title'] = 'New Fishes Available';
-                $payload['message'] = 'You can drop any message heregit';
-                $payload['body'] = 'New Fishes Available, Place your order no';
+                $payload['message'] = 'You can drop any message here';
+                $payload['body'] = 'New Fishes Available, Place your order now';
 
                 //SEND GOOGLE CLOUD MESSAGE
                 $this->pushNotification([env('DEVICE_TOKEN','none')],$payload);
