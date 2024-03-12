@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\FirebaseHelper;
 use App\Product;
 use App\ProductCategory;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +15,7 @@ use App\Helper\ImageManager;
 class ProductsController extends Controller
 {
     use ImageManager;
+    use FirebaseHelper;
     public function __construct()
     {
         $this->middleware("auth");
@@ -67,6 +69,9 @@ class ProductsController extends Controller
 
                 $product = Product::create($data);
                 DB::commit();
+
+                //SEND GOOGLE CLOUD MESSAGE
+                $this->pushNotification();
 
                 $request->session()->flash('product.name', $product->name);
                 return redirect()->route('products.index');

@@ -24,7 +24,7 @@ Route::get('customers', 'CustomersController@index')->name('customers.index');
 Route::get('customers/{customers}', 'CustomersController@show')->name('customers.show');
 Route::get('orders', 'OrdersController@index')->name('orders.index');
 Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
-Route::put("order/update-status/{status}", 'OrdersController@updateStatus')->name('order.update.status');
+Route::put("order/update-status/{status}", 'OrdersController@updateStatu    s')->name('order.update.status');
 Route::get('order-confirmations', 'OrderConfirmationsController@update')->name('orderConfirmations.update');
 Route::get('payments', 'PaymentsController@index')->name('payments.index');
 Route::get('payments/{payment}', 'PaymentsController@show')->name('payments.show');
