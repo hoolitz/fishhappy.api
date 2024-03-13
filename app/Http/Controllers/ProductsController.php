@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Helper\FirebaseHelper;
 use App\Product;
 use App\ProductCategory;
@@ -75,9 +76,14 @@ class ProductsController extends Controller
                 $payload['message'] = 'You can drop any message here';
                 $payload['body'] = 'New Fishes Available, Place your order now';
 
-                //SEND GOOGLE CLOUD MESSAGE
-                $this->pushNotification([env('DEVICE_TOKEN','none')],$payload);
+                //SEND GOOGLE CLOUD MESSAGE (NOTIFICATION TO ALL THE DEVICES)
+                $customer_devices = Customer::select('device_id')->get();
+                $devices = [];
+                foreach ($customer_devices as $device){
+                    $devices[] = $device['device_id'];
+                }
 
+                $this->pushNotification($devices,$payload);
                 $request->session()->flash('product.name', $product->name);
                 return redirect()->route('products.index');
             }

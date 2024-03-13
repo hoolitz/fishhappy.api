@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Customer;
+use App\Helper\FirebaseHelper;
 use App\Http\Controllers\Controller;
 use App\Notifications\OrderWasMade;
 use App\Order;
@@ -12,6 +14,7 @@ use Notification;
 
 class OrdersController extends Controller
 {
+    use FirebaseHelper;
     public function __construct()
     {
         $this->middleware('auth:api');
@@ -51,8 +54,16 @@ class OrdersController extends Controller
 
         //$this->pushNotification($customer, $order);
 
-        DB::commit();
+        $payload = [];
+        $payload['title'] = 'Order Placed Successfully';
+        $payload['message'] = 'You can drop any message here';
+        $payload['body'] = 'Your order is being processed, You will here from us shortly';
 
+        //SEND GOOGLE CLOUD MESSAGE (NOTIFICATION TO ALL THE DEVICES)
+        $device = Customer::where('id', auth()->id())->select('device_id')->first();
+        $this->pushNotification($device->device_id,$payload);
+
+        DB::commit();
         return response($order, 200);
     }
 

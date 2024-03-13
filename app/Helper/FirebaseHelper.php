@@ -35,7 +35,7 @@ trait FirebaseHelper {
 
         $registrationIds = $tokens;
 
-        if(count($tokens) > 1){
+        if(count($tokens) > 1) {
             $fields = array
             (
                 'registration_ids' => $registrationIds, //  for  multiple users

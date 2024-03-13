@@ -21,6 +21,7 @@ class Customer extends Authenticatable
         'phone',
         'email',
         'password',
+        'device_id',
     ];
 
     protected $hidden = ['password'];

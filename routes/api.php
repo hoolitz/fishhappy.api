@@ -1,5 +1,6 @@
 <?php
 
+use App\Customer;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\CustomerController;
@@ -10,6 +11,17 @@ use App\Http\Controllers\Api\ProductFavouriteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('test',function (){
+    $customer_devices = Customer::select('device_id')->get();
+    $devices = [];
+
+    foreach ($customer_devices as $device){
+        $devices[] = $device['device_id'];
+    }
+
+    return $devices;
+});
 
 Route::group(['prefix' => 'cstmr'], function () {
     Route::post('/register', [RegisterController::class, 'register']);
