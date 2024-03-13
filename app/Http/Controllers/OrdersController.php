@@ -41,9 +41,8 @@ class OrdersController extends Controller
         $payload['message'] = 'You can drop any message here';
         $payload['body'] = 'Your order is being '. $request->status .' You will here from us shortly';
 
-
-        $device = Customer::where('id', auth()->id())->select('device_id')->first();
-        $this->pushNotification($device->device_id,$payload);
+        $device = Customer::where('id', \Auth::id())->select('device_id')->first();
+        $this->pushNotification([$device->device_id],$payload);
 
         return redirect()->route('orders.index');
     }
