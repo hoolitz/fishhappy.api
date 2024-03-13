@@ -53,6 +53,7 @@ class OrdersController extends Controller
         Notification::send($customer, new OrderWasMade($order));
 
         //$this->pushNotification($customer, $order);
+        DB::commit();
 
         $payload = [];
         $payload['title'] = 'Order Placed Successfully';
@@ -63,7 +64,6 @@ class OrdersController extends Controller
         $device = Customer::where('id', auth()->id())->select('device_id')->first();
         $this->pushNotification($device->device_id,$payload);
 
-        DB::commit();
         return response($order, 200);
     }
 

@@ -39,7 +39,7 @@ class OrdersController extends Controller
         $payload = [];
         $payload['title'] = 'Order Placed Successfully';
         $payload['message'] = 'You can drop any message here';
-        $payload['body'] = 'Your order is being '. $order->status .' You will here from us shortly';
+        $payload['body'] = 'Your order is being '. $request->status .' You will here from us shortly';
 
 
         $device = Customer::where('id', auth()->id())->select('device_id')->first();

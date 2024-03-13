@@ -13,14 +13,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('test',function (){
-    $customer_devices = Customer::select('device_id')->get();
-    $devices = [];
-
-    foreach ($customer_devices as $device){
-        $devices[] = $device['device_id'];
-    }
-
-    return $devices;
+    $device = Customer::where('id', 1)->select('device_id')->first();
+    return $device->device_id;
 });
 
 Route::group(['prefix' => 'cstmr'], function () {
