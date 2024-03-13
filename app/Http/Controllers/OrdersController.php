@@ -6,6 +6,7 @@ use App\Customer;
 use App\Helper\FirebaseHelper;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
@@ -35,13 +36,14 @@ class OrdersController extends Controller
         $order->status = $request->status;
         $order->save();
 
+        $device = Customer::where('id', $order->customer_id)->select('device_id')->first();
+
         //UPDATE ORDER'S STASTUS NOTIFICATION
         $payload = [];
         $payload['title'] = 'Order Placed Successfully';
         $payload['message'] = 'You can drop any message here';
         $payload['body'] = 'Your order is being '. $request->status .' You will here from us shortly';
 
-        $device = Customer::where('id', \Auth::id())->select('device_id')->first();
         $this->pushNotification([$device->device_id],$payload);
 
         return redirect()->route('orders.index');
