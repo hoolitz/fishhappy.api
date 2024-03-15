@@ -50,7 +50,7 @@ class OrdersController extends Controller
             ]);
         });
 
-        Notification::send($customer, new OrderWasMade($order));
+        //Notification::send($customer, new OrderWasMade($order));
 
         //$this->pushNotification($customer, $order);
         DB::commit();
