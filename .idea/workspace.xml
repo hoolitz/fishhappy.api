@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a787e357-3986-4c56-97d1-fb2e1da01e64" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Helper/FirebaseHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helper/FirebaseHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,6 +230,7 @@
       <workItem from="1710088099274" duration="11236000" />
       <workItem from="1710219128564" duration="739000" />
       <workItem from="1710306374768" duration="600000" />
+      <workItem from="1710549690982" duration="1049000" />
     </task>
     <servers />
   </component>

@@ -61,8 +61,8 @@ class OrdersController extends Controller
         $payload['body'] = 'Your order is being processed, You will here from us shortly';
 
         //SEND GOOGLE CLOUD MESSAGE (NOTIFICATION TO ALL THE DEVICES)
-        $device = Customer::where('id', auth()->id())->select('device_id')->first();
-        $this->pushNotification($device->device_id,$payload);
+        $device = Customer::where('id', $order->customer_id)->select('device_id')->first();
+        $this->pushNotification([$device->device_id],$payload);
 
         return response($order, 200);
     }
