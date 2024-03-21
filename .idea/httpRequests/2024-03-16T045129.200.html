@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sign in to your account - Laravel</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <!-- Alpine.js -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/app.css">
+    <!-- Styles -->
+    <!-- Livewire Styles -->
+    <style>
+        [wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid], [wire\:loading\.inline-flex] {
+            display: none;
+        }
+
+        [wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short], [wire\:loading\.delay\.long], [wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest] {
+            display: none;
+        }
+
+        [wire\:offline] {
+            display: none;
+        }
+
+        [wire\:dirty]:not(textarea):not(input):not(select) {
+            display: none;
+        }
+
+        input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {
+            animation-duration: 50000s;
+            animation-name: livewireautofill;
+        }
+
+        @keyframes livewireautofill {
+            from {
+            }
+        }
+    </style>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="NCHfr1dSjE3zWH2TJydblcBSfThwEgyWfh6HRC1x">
+</head>
+<style>
+    /* Hide the spinner controls for number input */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield; /* Firefox */
+    }
+</style>
+
+<body class="bg-gray-200 text-gray-800 antialiased">
+<div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
+    <div>
+        <div wire:id="lZKkMSK8XwlQbMrsTBZi"
+             wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;lZKkMSK8XwlQbMrsTBZi&quot;,&quot;name&quot;:&quot;auth.login&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;login&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;73ed5102&quot;,&quot;data&quot;:{&quot;email&quot;:&quot;&quot;,&quot;password&quot;:&quot;&quot;,&quot;remember&quot;:false},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;99ca700c3b03c0c4f2a3cd45ed13e4138904f6087914bfe4b8c75b712f869e73&quot;}}">
+            <div class="sm:mx-auto sm:w-full sm:max-w-md">
+                <svg class="w-auto h-16 mx-auto text-indigo-600" viewBox="0 0 50 52" xmlns="http://www.w3.org/2000/svg"
+                     fill="currentColor">
+                    <title>Laravel</title>
+                    <path d="M49.626 11.564a.809.809 0 0 1 .028.209v10.972a.8.8 0 0 1-.402.694l-9.209 5.302V39.25c0 .286-.152.55-.4.694L20.42 51.01c-.044.025-.092.041-.14.058-.018.006-.035.017-.054.022a.805.805 0 0 1-.41 0c-.022-.006-.042-.018-.063-.026-.044-.016-.09-.03-.132-.054L.402 39.944A.801.801 0 0 1 0 39.25V6.334c0-.072.01-.142.028-.21.006-.023.02-.044.028-.067.015-.042.029-.085.051-.124.015-.026.037-.047.055-.071.023-.032.044-.065.071-.093.023-.023.053-.04.079-.06.029-.024.055-.05.088-.069h.001l9.61-5.533a.802.802 0 0 1 .8 0l9.61 5.533h.002c.032.02.059.045.088.068.026.02.055.038.078.06.028.029.048.062.072.094.017.024.04.045.054.071.023.04.036.082.052.124.008.023.022.044.028.068a.809.809 0 0 1 .028.209v20.559l8.008-4.611v-10.51c0-.07.01-.141.028-.208.007-.024.02-.045.028-.068.016-.042.03-.085.052-.124.015-.026.037-.047.054-.071.024-.032.044-.065.072-.093.023-.023.052-.04.078-.06.03-.024.056-.05.088-.069h.001l9.611-5.533a.801.801 0 0 1 .8 0l9.61 5.533c.034.02.06.045.09.068.025.02.054.038.077.06.028.029.048.062.072.094.018.024.04.045.054.071.023.039.036.082.052.124.009.023.022.044.028.068zm-1.574 10.718v-9.124l-3.363 1.936-4.646 2.675v9.124l8.01-4.611zm-9.61 16.505v-9.13l-4.57 2.61-13.05 7.448v9.216l17.62-10.144zM1.602 7.719v31.068L19.22 48.93v-9.214l-9.204-5.209-.003-.002-.004-.002c-.031-.018-.057-.044-.086-.066-.025-.02-.054-.036-.076-.058l-.002-.003c-.026-.025-.044-.056-.066-.084-.02-.027-.044-.05-.06-.078l-.001-.003c-.018-.03-.029-.066-.042-.1-.013-.03-.03-.058-.038-.09v-.001c-.01-.038-.012-.078-.016-.117-.004-.03-.012-.06-.012-.09v-.002-21.481L4.965 9.654 1.602 7.72zm8.81-5.994L2.405 6.334l8.005 4.609 8.006-4.61-8.006-4.608zm4.164 28.764l4.645-2.674V7.719l-3.363 1.936-4.646 2.675v20.096l3.364-1.937zM39.243 7.164l-8.006 4.609 8.006 4.609 8.005-4.61-8.005-4.608zm-.801 10.605l-4.646-2.675-3.363-1.936v9.124l4.645 2.674 3.364 1.937v-9.124zM20.02 38.33l11.743-6.704 5.87-3.35-8-4.606-9.211 5.303-8.395 4.833 7.993 4.524z"/>
+                </svg>
+
+
+                <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
+                    Sign in to your account
+                </h2>
+                <p class="mt-2 text-sm text-center text-gray-600 leading-5 max-w">
+                    Or
+                    <a href="http://localhost:8000/register"
+                       class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                        create a new account
+                    </a>
+                </p>
+            </div>
+
+            <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+                <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
+                    <form wire:submit.prevent="authenticate">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
+                                Email address
+                            </label>
+
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="email" id="email" name="email" type="email" required autofocus
+                                       class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 "/>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-6">
+                            <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
+                                Password
+                            </label>
+
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="password" id="password" type="password" required
+                                       class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 "/>
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-center justify-between mt-6">
+                            <div class="flex items-center">
+                                <input wire:model.lazy="remember" id="remember" type="checkbox"
+                                       class="form-checkbox w-4 h-4 text-indigo-600 transition duration-150 ease-in-out"/>
+                                <label for="remember" class="block ml-2 text-sm text-gray-900 leading-5">
+                                    Remember
+                                </label>
+                            </div>
+
+                            <div class="text-sm leading-5">
+                                <a href="http://localhost:8000/password/reset"
+                                   class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                                    Forgot your password?
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                    <span class="block w-full rounded-md shadow-sm">
+                        <button type="submit"
+                                class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                            Sign in
+                        </button>
+                    </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Livewire Component wire-end:lZKkMSK8XwlQbMrsTBZi -->    </div>
+</div>
+
+<script src="/js/app.js"></script>
+
+<!-- Livewire Scripts -->
+
+<script src="/livewire/livewire.js?id=90730a3b0e7144480175" data-turbo-eval="false"
+        data-turbolinks-eval="false"></script>
+<script data-turbo-eval="false" data-turbolinks-eval="false">
+    if (window.livewire) {
+        console.warn('Livewire: It looks like Livewire\'s @livewireScripts JavaScript assets have already been loaded. Make sure you aren\'t loading them twice.')
+    }
+
+    window.livewire = new Livewire();
+    window.livewire.devTools(true);
+    window.Livewire = window.livewire;
+    window.livewire_app_url = '';
+    window.livewire_token = 'NCHfr1dSjE3zWH2TJydblcBSfThwEgyWfh6HRC1x';
+
+    /* Make sure Livewire loads first. */
+    if (window.Alpine) {
+        /* Defer showing the warning so it doesn't get buried under downstream errors. */
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                console.warn("Livewire: It looks like AlpineJS has already been loaded. Make sure Livewire\'s scripts are loaded before Alpine.\\n\\n Reference docs for more info: http://laravel-livewire.com/docs/alpine-js")
+            })
+        });
+    }
+
+    /* Make Alpine wait until Livewire is finished rendering to do its thing. */
+    window.deferLoadingAlpine = function (callback) {
+        window.addEventListener('livewire:load', function () {
+            callback();
+        });
+    };
+
+    let started = false;
+
+    window.addEventListener('alpine:initializing', function () {
+        if (!started) {
+            window.livewire.start();
+
+            started = true;
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        if (!started) {
+            window.livewire.start();
+
+            started = true;
+        }
+    });
+</script>
+</body>
+</html>

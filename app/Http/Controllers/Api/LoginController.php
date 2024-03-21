@@ -19,7 +19,6 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-
         if ($validator->fails()){
             return response()->json([
                 'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,

@@ -2,6 +2,7 @@
 
 use App\Customer;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\OrderCancelController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\CategoriesController;
@@ -10,12 +11,9 @@ use App\Http\Controllers\Api\OrdersController;
 use App\Http\Controllers\Api\ProductFavouriteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\AddressesController;
 
 
-Route::get('test',function (){
-    $device = Customer::where('id', 1)->select('device_id')->first();
-    return $device->device_id;
-});
 
 Route::group(['prefix' => 'cstmr'], function () {
     Route::post('/register', [RegisterController::class, 'register']);
@@ -46,9 +44,22 @@ Route::group(['prefix' => 'cstmr'], function () {
 //    Route::get("/orders", "Api\OrdersController@index");
 //    Route::get("/orders/{order}", "Api\OrdersController@show");
 //    Route::post("/orders", "Api\OrdersController@store");
-    Route::post("/orders/{order}/cancel", "Api\OrderCancelController");
+//    Route::post("/orders/{order}/cancel", "Api\OrderCancelController");
+    Route::post("/orders/{order}/cancel", [OrderCancelController::class,'__invoke']);
+
+
     Route::post("/orders/{order}/confirm", "Api\OrderConfirmController");
     Route::get("/orders/{order}/payments", "Api\PaymentsController");
+});
+
+//API FOR GETTING LOCATION INFORMATION FROM NAPA
+Route::group(['prefix' => 'v1'], function () {
+    Route::get('regions', [AddressesController::class,'getRegions']);
+    Route::get('districts/{regionId}', [AddressesController::class,'getDistricts']);
+    Route::get('councils/{districtId}', [AddressesController::class,'getCouncils']);
+    Route::get('streets/{councilId}', [AddressesController::class,'getStreet']);
+    Route::get('streetRoad/{streetId}', [AddressesController::class,'getStreetRoad']);
+    Route::get('address/{streetRoadId}', [AddressesController::class,'getAddress']);
 });
 
 
