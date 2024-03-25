@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class AddressesController extends Controller
 {
-    // TODO
+
 
     public function __construct()
     {
@@ -20,7 +20,6 @@ class AddressesController extends Controller
 //                'X-Napa-Api-Key' => env('NAPA_API_KEY', 'None'),
 //            ]);
 //        });
-
 
         $this->middleware('auth:api');
 
@@ -47,7 +46,6 @@ class AddressesController extends Controller
 
     public function getDistricts(Request $request, $id)
     {
-        //https://napa.mawasiliano.go.tz/frontend_api/api/pub/districts/3
 
         try {
             $response = Http::withHeaders([
@@ -125,9 +123,9 @@ class AddressesController extends Controller
             ], $e->getCode())->setStatusCode($e->getCode());
         }
     }
-    
-    
-    
+
+
+
     public function getAddress(Request $request, $id) {
         try {
             $response = Http::withHeaders([
@@ -144,13 +142,28 @@ class AddressesController extends Controller
             ], $e->getCode())->setStatusCode($e->getCode());
         }
     }
-    
+
 
 
     public function createShipping(Request $request){
         // customer authenticated
 
-        $customer = auth("api")->user();
+        try {
+
+
+            return response()->json([
+               'message' => 'Address created Successful',
+               'status'  => 200,
+            ],200);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => $e->getCode(),
+                'message' => $e->getMessage(),
+            ], $e->getCode())->setStatusCode($e->getCode());
+        }
+
+
 
 
 
