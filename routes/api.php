@@ -60,6 +60,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('streets/{councilId}', [AddressesController::class,'getStreet']);
     Route::get('streetRoad/{streetId}', [AddressesController::class,'getStreetRoad']);
     Route::get('address/{streetRoadId}', [AddressesController::class,'getAddress']);
+    Route::post('create_shipping',[AddressesController::class,'createShipping']);
 });
 
 

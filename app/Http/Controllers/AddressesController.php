@@ -20,6 +20,10 @@ class AddressesController extends Controller
 //                'X-Napa-Api-Key' => env('NAPA_API_KEY', 'None'),
 //            ]);
 //        });
+
+
+        $this->middleware('auth:api');
+
     }
 
     //THINK ABOUT CACHING THE RESULTS
@@ -120,6 +124,17 @@ class AddressesController extends Controller
                 'message' => $e->getMessage(),
             ], $e->getCode())->setStatusCode($e->getCode());
         }
+    }
+
+
+    public function createShipping(Request $request){
+        // customer authenticated
+
+        $customer = auth("api")->user();
+
+
+
+
     }
 
 
