@@ -30,7 +30,7 @@ class AddressesController extends Controller
                 'X-Napa-Api-Key' => env('NAPA_API_KEY', 'None'),
             ])->get(env('NAPA_BASE_URL') . 'frontend_api/api/pub/regions');
             if ($response->status() == 200) {
-                return $response->json();
+                return $response->json()['data'];
             }
         } catch (Exception $e) {
             return response()->json([
@@ -50,7 +50,7 @@ class AddressesController extends Controller
                 'X-Napa-Api-Key' => env('NAPA_API_KEY', 'None'),
             ])->get(env('NAPA_BASE_URL') . 'frontend_api/api/pub/districts/'.$id);
             if ($response->status() == 200) {
-                return $response->json();
+                return $response->json()['data'];
             }
 
         } catch (Exception $e) {
@@ -74,7 +74,7 @@ class AddressesController extends Controller
                 'X-Napa-Api-Key' => env('NAPA_API_KEY', 'None'),
             ])->get(env('NAPA_BASE_URL') . 'frontend_api/api/pub/skip_councils/'.$id);
             if ($response->status() == 200) {
-                return $response->json();
+                return $response->json()['data'];
             }
 
         } catch (Exception $e) {
@@ -93,7 +93,7 @@ class AddressesController extends Controller
                 'X-Napa-Api-Key' => env('NAPA_API_KEY', 'None'),
             ])->get(env('NAPA_BASE_URL') . 'frontend_api/api/pub/streets/'.$id);
             if ($response->status() == 200) {
-                return $response->json();
+                return $response->json()['data'];
             }
 
         } catch (Exception $e) {
@@ -109,9 +109,9 @@ class AddressesController extends Controller
         try {
             $response = Http::withHeaders([
                 'X-Napa-Api-Key' => env('NAPA_API_KEY', 'None'),
-            ])->get(env('NAPA_BASE_URL') . 'frontend_api/api/pub/drill_locations/'.$id);
+            ])->post(env('NAPA_BASE_URL') . 'frontend_api/api/pub/drill_locations',['location_id'=>$id,'skip'=>0]);
             if ($response->status() == 200) {
-                return $response->json();
+                return $response->json()["data"];
             }
 
         } catch (Exception $e) {
@@ -121,6 +121,26 @@ class AddressesController extends Controller
             ], $e->getCode())->setStatusCode($e->getCode());
         }
     }
+    
+    
+    
+    public function getAddress(Request $request, $id) {
+        try {
+            $response = Http::withHeaders([
+                'X-Napa-Api-Key' => env('NAPA_API_KEY', 'None'),
+            ])->get(env('NAPA_BASE_URL') . 'frontend_api/api/pub/skip_addresses/'.$id);
+            if ($response->status() == 200) {
+                return $response->json()['data'];
+            }
+
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => $e->getCode(),
+                'message' => $e->getMessage(),
+            ], $e->getCode())->setStatusCode($e->getCode());
+        }
+    }
+    
 
 
 }

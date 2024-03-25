@@ -58,7 +58,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('districts/{regionId}', [AddressesController::class,'getDistricts']);
     Route::get('councils/{districtId}', [AddressesController::class,'getCouncils']);
     Route::get('streets/{councilId}', [AddressesController::class,'getStreet']);
-    Route::get('streetRoad/{streetId}', [AddressesController::class,'getStreetRoad']);
+    Route::get('street_road/{streetId}', [AddressesController::class,'getStreetRoad']);
     Route::get('address/{streetRoadId}', [AddressesController::class,'getAddress']);
 });
 
