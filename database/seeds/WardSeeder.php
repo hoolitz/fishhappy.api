@@ -1,6 +1,7 @@
 <?php
 
 use App\District;
+use App\Ward;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Http;
 use Mockery\Exception;
@@ -25,7 +26,7 @@ class WardSeeder extends Seeder
                     $wards = $response->json()['data'];
 
                     foreach ($wards as $ward) {
-                        District::create([
+                        Ward::create([
                             'name' => $ward['name'],
                             'postcode' => $ward['postcode'],
                             'napa_ward_id' => $ward['id'],
