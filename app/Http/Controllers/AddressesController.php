@@ -147,13 +147,15 @@ class AddressesController extends Controller
 
 
     public function createShipping(Request $request){
-        // customer authenticated
+
+        //return $request->all();
 
         try {
             $customer = auth("api")->user();
-            $address  = [
+            $address  = [ 
                 'customer_id' => $customer->id,
-                'data' => $request->all()
+                'contact_name' => $request->contact_name,
+                'phone_number' => $request->phone_number,
             ];
             Address::create($address);
 
