@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
@@ -149,10 +150,15 @@ class AddressesController extends Controller
         // customer authenticated
 
         try {
-
+            $customer = auth("api")->user();
+            $address  = [
+                'customer_id' => $customer->id,
+                'data' => $request->all()
+            ];
+            Address::create($address);
 
             return response()->json([
-               'message' => 'Address created Successful',
+                   'message' => 'Address created Successful',
                'status'  => 200,
             ],200);
 
