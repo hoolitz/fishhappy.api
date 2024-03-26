@@ -28,9 +28,9 @@ class StreetSeeder extends Seeder
                             'name' => $street['name'],
                             'postcode' => $street['postcode'],
                             'napa_street_id' => $street['id'],
-                            'ward_id' => $street->id,
-                            'district_id' => $street->id,
-                            'region_id' => $street->region_id,
+                            'ward_id' => $wardId->id,
+                            'district_id' => $wardId->id,
+                            'region_id' => $wardId->region_id,
                         ]);
                     }
                 }
