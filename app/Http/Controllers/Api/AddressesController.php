@@ -192,7 +192,7 @@ class AddressesController extends Controller
                 'customer_id' => $customer->id,
                 'region_id' => $ward->region_id,
                 'district_id' => $ward->district_id,
-                'ward_id ' => $ward->id,
+                'ward_id' => $ward->id,
                 'street_id' => $street->id,
                 'street_road_id' => $street_road->id,
                 'isDefault' => $request->isDefault,
