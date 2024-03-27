@@ -58,6 +58,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('street_road/{streetId}', [AddressesController::class,'getStreetRoad']);
     Route::get('address/{streetRoadId}', [AddressesController::class,'getAddress']);
     Route::post('create_shipping',[AddressesController::class,'createShipping']);
+    Route::get('customer_addresses',[AddressesController::class,'getCustomerAddresses']);
 });
 
 

@@ -159,9 +159,9 @@ class AddressesController extends Controller
 
             //Street
             $street = Street::firstOrCreate(
-                ['napa_street_id'=> $request->napa_street_id],
+                ['napa_street_id' => $request->napa_street_id],
                 [
-                    'name'=> $request->street_name,
+                    'name' => $request->street_name,
                     'postcode' => $request->street_postcode,
                     'ward_id' => $ward->id,
                     'district_id' => $ward->district_id,
@@ -171,11 +171,11 @@ class AddressesController extends Controller
 
             //Street Road
             $street_road = StreetRoad::firstOrCreate(
-                ['napa_street_road_id'=> $request->napa_street_road_id],
+                ['napa_street_road_id' => $request->napa_street_road_id],
                 [
-                    'name'=> $request->street_road_name,
+                    'name' => $request->street_road_name,
                     'postcode' => $request->street_road_postcode,
-                    'napa_street_road_id' =>  $request->napa_street_road_id,
+                    'napa_street_road_id' => $request->napa_street_road_id,
                     'street_id' => $street->id,
                 ]
             );
@@ -213,6 +213,26 @@ class AddressesController extends Controller
             ], $e->getCode())->setStatusCode($e->getCode());
         }
 
+    }
+
+
+    public function getCustomerAddresses(Request $id)
+    {
+        try {
+            $customer = auth("api")->user();
+            $address = Address::where('customer_id', $customer->id)->first();
+
+            return response()->json([
+                $address
+            ],200);
+
+
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => $e->getCode(),
+                'message' => $e->getMessage(),
+            ], $e->getCode())->setStatusCode($e->getCode());
+        }
     }
 
 
