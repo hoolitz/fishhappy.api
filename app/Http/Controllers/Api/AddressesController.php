@@ -196,6 +196,7 @@ class AddressesController extends Controller
                 'ward_id ' => $ward->id,
                 'street_id' => $street->id,
                 'street_road_id' => $street_road->id,
+                'isDefault' => $request->isDefault,
             ];
 
             Address::create($address);
