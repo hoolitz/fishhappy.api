@@ -154,7 +154,7 @@ class AddressesController extends Controller
 
         try {
             $customer = auth("api")->user();
-            $ward = Ward::select(['id', 'region_id', 'district_id'])->where('napa_region_id', $request->napa_ward_id)->first();
+            $ward = Ward::select(['id', 'region_id', 'district_id'])->where('napa_ward_id', $request->napa_ward_id)->first();
 
             //Street
             $street = Street::firstOrCreate(
