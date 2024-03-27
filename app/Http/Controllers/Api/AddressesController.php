@@ -172,13 +172,12 @@ class AddressesController extends Controller
             $street_road = StreetRoad::firstOrCreate(
                 ['napa_street_road_id'=> $request->napa_street_road_id],
                 [
-                    'name'=> $request->street_name,
-                    'postcode' => $request->street_postcode,
+                    'name'=> $request->street_road_name,
+                    'postcode' => $request->street_road_postcode,
                     'napa_street_road_id' =>  $request->napa_street_road_id,
                     'street_id' => $street->id,
                 ]
             );
-
 
             $address = [
                 'contact_name' => $request->contact_name,
