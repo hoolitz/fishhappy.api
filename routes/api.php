@@ -1,18 +1,15 @@
 <?php
 
-use App\Customer;
+use App\Http\Controllers\Api\AddressesController;
+use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\OrderCancelController;
-use App\Http\Controllers\Api\RegisterController;
-use App\Http\Controllers\Api\CustomerController;
-use App\Http\Controllers\Api\CategoriesController;
-use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\OrdersController;
 use App\Http\Controllers\Api\ProductFavouriteController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\ProductsController;
+use App\Http\Controllers\Api\RegisterController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\AddressesController;
-
 
 
 Route::group(['prefix' => 'cstmr'], function () {
