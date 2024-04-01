@@ -219,12 +219,8 @@ class AddressesController extends Controller
     {
         try {
             $customer = auth("api")->user();
-            $address = Address::where('customer_id', $customer->id)->first();
-
-            return response()->json([
-                $address
-            ],200);
-
+            $address = Address::where('customer_id', $customer->id)->get();
+            return response()->json($address, 200);
 
         } catch (Exception $e) {
             return response()->json([
