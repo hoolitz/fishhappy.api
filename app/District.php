@@ -13,4 +13,6 @@ class District extends Model
         'name',
         'postcode'
     ];
+    
+    public $timestamps = false;
 }

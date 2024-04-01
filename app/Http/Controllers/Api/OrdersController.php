@@ -41,7 +41,8 @@ class OrdersController extends Controller
 
         $order = Order::create([
             "status" => "pending",
-            "customer_id" => $customer->id
+            "customer_id" => $customer->id,
+            "shipping_id" => $request->query('shipping_id')
         ]);
 
         collect(request('products'))->each(function ($product) use ($order) {

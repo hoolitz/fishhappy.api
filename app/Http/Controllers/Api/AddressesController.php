@@ -32,6 +32,7 @@ class AddressesController extends Controller
     //THINK ABOUT CACHING THE RESULTS
     public function getRegions(Request $request)
     {
+
         try {
             $response = Http::withHeaders([
                 'X-Napa-Api-Key' => env('NAPA_API_KEY', 'None'),
